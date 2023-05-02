@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MARIAN=../../build TRG=en SRC=de GPU="0" \
-   $MARIAN/marian \
+export TRG=en SRC=de GPU="0"
+
+$MARIAN/marian \
      -c transformer-model.yml \
      -d ${GPU} --workspace 9000 --seed 1111 --after 10e \
      --model model/model.npz    --train-sets data/corpus.clean.{$SRC,$TRG} \
